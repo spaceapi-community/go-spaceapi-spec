@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"strings"
 	"os"
+	"sort"
+	"io"
 )
 
 func main() {
@@ -39,33 +41,58 @@ func main() {
 
 		generator := generate.New(parsedSchema)
 		structs, _ := generator.CreateStructs()
-		output(version, structs)
+		os.Mkdir("v" + version, 0755)
+		w, err := os.Create("./v" + version + "/spec.go")
+		output(w, structs)
 	}
 }
 
-func output(filename string, structs map[string]generate.Struct) {
-	os.Mkdir("v" + filename, 0755)
-	w, err := os.Create("./v" + filename + "/spec.go")
 
-	if err == nil {
-		fmt.Fprintf(w, "package spaceapi\n")
+// everything below is shamelessly copied from
+// https://github.com/a-h/generate/blob/master/cmd/schema-generate/main.go
+func getOrderedFieldNames(m map[string]generate.Field) []string {
+	keys := make([]string, len(m))
+	idx := 0
+	for k := range m {
+		keys[idx] = k
+		idx++
+	}
+	sort.Strings(keys)
+	return keys
+}
 
-		for _, s := range structs {
+func getOrderedStructNames(m map[string]generate.Struct) []string {
+	keys := make([]string, len(m))
+	idx := 0
+	for k := range m {
+		keys[idx] = k
+		idx++
+	}
+	sort.Strings(keys)
+	return keys
+}
 
-			fmt.Fprintln(w, "")
-			fmt.Fprintf(w, "type %s struct {\n", s.Name)
+func output(w io.Writer, structs map[string]generate.Struct) {
+	fmt.Fprintf(w, "package spaceapi\n")
 
-			for _, f := range s.Fields {
-				// Only apply omitempty if the field is not required.
-				omitempty := ",omitempty"
-				if f.Required {
-					omitempty = ""
-				}
+	for _, k := range getOrderedStructNames(structs) {
+		s := structs[k]
 
-				fmt.Fprintf(w, "  %s %s `json:\"%s%s\"`\n", f.Name, f.Type, f.JSONName, omitempty)
+		fmt.Fprintln(w, "")
+		fmt.Fprintf(w, "type %s struct {\n", s.Name)
+
+		for _, fieldKey := range getOrderedFieldNames(s.Fields) {
+			f := s.Fields[fieldKey]
+
+			// Only apply omitempty if the field is not required.
+			omitempty := ",omitempty"
+			if f.Required {
+				omitempty = ""
 			}
 
-			fmt.Fprintln(w, "}")
+			fmt.Fprintf(w, "  %s %s `json:\"%s%s\"`\n", f.Name, f.Type, f.JSONName, omitempty)
 		}
+
+		fmt.Fprintln(w, "}")
 	}
 }
