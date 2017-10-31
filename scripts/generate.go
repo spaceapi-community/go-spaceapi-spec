@@ -1,14 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"github.com/a-h/generate"
 	"github.com/a-h/generate/jsonschema"
 	validator "github.com/gidsi/go-spaceapi-validator"
-	"fmt"
-	"strings"
+	"io"
 	"os"
 	"sort"
-	"io"
+	"strings"
 )
 
 func main() {
@@ -41,12 +41,11 @@ func main() {
 
 		generator := generate.New(parsedSchema)
 		structs, _ := generator.CreateStructs()
-		os.Mkdir("v" + version, 0755)
+		os.Mkdir("v"+version, 0755)
 		w, err := os.Create("./v" + version + "/spec.go")
 		output(w, structs)
 	}
 }
-
 
 // everything below is shamelessly copied from
 // https://github.com/a-h/generate/blob/master/cmd/schema-generate/main.go
