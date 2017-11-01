@@ -7,6 +7,7 @@ import (
 	validator "github.com/gidsi/go-spaceapi-validator"
 	"io"
 	"os"
+	"os/exec"
 	"sort"
 	"strings"
 )
@@ -43,8 +44,15 @@ func main() {
 		structs, _ := generator.CreateStructs()
 		os.Mkdir("v"+version, 0755)
 		w, err := os.Create("./v" + version + "/spec.go")
-		output(w, structs)
+
+		if err == nil {
+			output(w, structs)
+		}
 	}
+
+	// structs should be formatted nicely and gofmt doesn't provide a lib. Not going to implement it by myself
+	cmd := exec.Command("gofmt", "-w", "./")
+	cmd.Run()
 }
 
 // everything below is shamelessly copied from
@@ -72,7 +80,7 @@ func getOrderedStructNames(m map[string]generate.Struct) []string {
 }
 
 func output(w io.Writer, structs map[string]generate.Struct) {
-	fmt.Fprintf(w, "package spaceapi\n")
+	fmt.Fprintf(w, "package spaceapi_struct\n")
 
 	for _, k := range getOrderedStructNames(structs) {
 		s := structs[k]

@@ -1,4 +1,4 @@
-package spaceapi
+package spaceapi_struct
 
 type Contact struct {
 	Email     string   `json:"email,omitempty"`
