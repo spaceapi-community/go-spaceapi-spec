@@ -80,7 +80,7 @@ func getOrderedStructNames(m map[string]generate.Struct) []string {
 }
 
 func output(w io.Writer, structs map[string]generate.Struct) {
-	fmt.Fprintf(w, "package spaceapi_struct\n")
+	fmt.Fprintf(w, "package spaceapiStruct\n")
 
 	for _, k := range getOrderedStructNames(structs) {
 		s := structs[k]

@@ -1,4 +1,4 @@
-package spaceapi_struct
+package spaceapiStruct
 
 type AccountBalance struct {
 	Description string  `json:"description,omitempty"`

@@ -1,4 +1,4 @@
-package spaceapi_struct
+package spaceapiStruct
 
 type Events struct {
 	Extra string  `json:"extra,omitempty"`
