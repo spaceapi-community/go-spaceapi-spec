@@ -1,5 +1,6 @@
 package spaceapiStruct
 
+// AccountBalance
 type AccountBalance struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location,omitempty"`
@@ -8,6 +9,7 @@ type AccountBalance struct {
 	Value       float64 `json:"value"`
 }
 
+// Alpha
 type Alpha struct {
 	ConversionFactor float64 `json:"conversion_factor,omitempty"`
 	DeadTime         float64 `json:"dead_time,omitempty"`
@@ -18,6 +20,7 @@ type Alpha struct {
 	Value            float64 `json:"value"`
 }
 
+// Barometer
 type Barometer struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location"`
@@ -26,6 +29,7 @@ type Barometer struct {
 	Value       float64 `json:"value"`
 }
 
+// Beta
 type Beta struct {
 	ConversionFactor float64 `json:"conversion_factor,omitempty"`
 	DeadTime         float64 `json:"dead_time,omitempty"`
@@ -36,6 +40,7 @@ type Beta struct {
 	Value            float64 `json:"value"`
 }
 
+// BetaGamma
 type BetaGamma struct {
 	ConversionFactor float64 `json:"conversion_factor,omitempty"`
 	DeadTime         float64 `json:"dead_time,omitempty"`
@@ -46,6 +51,7 @@ type BetaGamma struct {
 	Value            float64 `json:"value"`
 }
 
+// BeverageSupply
 type BeverageSupply struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location,omitempty"`
@@ -54,20 +60,24 @@ type BeverageSupply struct {
 	Value       float64 `json:"value"`
 }
 
+// Blog
 type Blog struct {
 	Type string `json:"type,omitempty"`
 	Url  string `json:"url"`
 }
 
+// Cache Specifies options about caching of your SpaceAPI endpoint. Use this if you want to avoid hundreds/thousands of application instances crawling your status.
 type Cache struct {
 	Schedule string `json:"schedule"`
 }
 
+// Calendar
 type Calendar struct {
 	Type string `json:"type,omitempty"`
 	Url  string `json:"url"`
 }
 
+// Contact Contact information about your space. You must define at least one which is in the list of allowed values of the issue_report_channels field.
 type Contact struct {
 	Email      string       `json:"email,omitempty"`
 	Facebook   string       `json:"facebook,omitempty"`
@@ -84,11 +94,13 @@ type Contact struct {
 	Xmpp       string       `json:"xmpp,omitempty"`
 }
 
+// Direction The wind direction in degrees. Use this <a href="https://github.com/slopjong/OpenSpaceLint/issues/80" target="_blank_">mapping</a> to convert the degrees into a string.
 type Direction struct {
 	Unit  string  `json:"unit"`
 	Value float64 `json:"value"`
 }
 
+// DoorLocked
 type DoorLocked struct {
 	Description string `json:"description,omitempty"`
 	Location    string `json:"location"`
@@ -96,11 +108,13 @@ type DoorLocked struct {
 	Value       bool   `json:"value"`
 }
 
+// Elevation Height above mean sea level.
 type Elevation struct {
 	Unit  string  `json:"unit"`
 	Value float64 `json:"value"`
 }
 
+// Events
 type Events struct {
 	Extra     string  `json:"extra,omitempty"`
 	Name      string  `json:"name"`
@@ -108,6 +122,7 @@ type Events struct {
 	Type      string  `json:"type"`
 }
 
+// Feeds Feeds where users can get updates of your space
 type Feeds struct {
 	Blog     *Blog     `json:"blog,omitempty"`
 	Calendar *Calendar `json:"calendar,omitempty"`
@@ -115,11 +130,13 @@ type Feeds struct {
 	Wiki     *Wiki     `json:"wiki,omitempty"`
 }
 
+// Flickr
 type Flickr struct {
 	Type string `json:"type,omitempty"`
 	Url  string `json:"url"`
 }
 
+// Gamma
 type Gamma struct {
 	ConversionFactor float64 `json:"conversion_factor,omitempty"`
 	DeadTime         float64 `json:"dead_time,omitempty"`
@@ -130,15 +147,18 @@ type Gamma struct {
 	Value            float64 `json:"value"`
 }
 
+// Google Google services.
 type Google struct {
 	Plus string `json:"plus,omitempty"`
 }
 
+// Gust
 type Gust struct {
 	Unit  string  `json:"unit"`
 	Value float64 `json:"value"`
 }
 
+// Humidity
 type Humidity struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location"`
@@ -147,11 +167,13 @@ type Humidity struct {
 	Value       float64 `json:"value"`
 }
 
+// Icon Icons that show the status graphically
 type Icon struct {
 	Closed string `json:"closed"`
 	Open   string `json:"open"`
 }
 
+// Keymasters
 type Keymasters struct {
 	Email   string `json:"email,omitempty"`
 	IrcNick string `json:"irc_nick,omitempty"`
@@ -161,6 +183,7 @@ type Keymasters struct {
 	Xmpp    string `json:"xmpp,omitempty"`
 }
 
+// Location Position data such as a postal address or geographic coordinates
 type Location struct {
 	Address  string  `json:"address,omitempty"`
 	Lat      float64 `json:"lat"`
@@ -168,11 +191,13 @@ type Location struct {
 	Timezone string  `json:"timezone,omitempty"`
 }
 
+// Machines
 type Machines struct {
 	Mac  string `json:"mac"`
 	Name string `json:"name,omitempty"`
 }
 
+// MembershipPlans
 type MembershipPlans struct {
 	Currency        string  `json:"currency"`
 	Description     string  `json:"description,omitempty"`
@@ -181,6 +206,7 @@ type MembershipPlans struct {
 	Value           float64 `json:"value"`
 }
 
+// NetworkConnections
 type NetworkConnections struct {
 	Description string     `json:"description,omitempty"`
 	Location    string     `json:"location,omitempty"`
@@ -190,6 +216,7 @@ type NetworkConnections struct {
 	Value       float64    `json:"value"`
 }
 
+// PeopleNowPresent
 type PeopleNowPresent struct {
 	Description string   `json:"description,omitempty"`
 	Location    string   `json:"location,omitempty"`
@@ -198,6 +225,7 @@ type PeopleNowPresent struct {
 	Value       float64  `json:"value"`
 }
 
+// PowerConsumption
 type PowerConsumption struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location"`
@@ -206,6 +234,7 @@ type PowerConsumption struct {
 	Value       float64 `json:"value"`
 }
 
+// Properties
 type Properties struct {
 	Direction *Direction `json:"direction"`
 	Elevation *Elevation `json:"elevation"`
@@ -213,6 +242,7 @@ type Properties struct {
 	Speed     *Speed     `json:"speed"`
 }
 
+// Radiation Compound radiation sensor. Check this <a rel="nofollow" href="https://sites.google.com/site/diygeigercounter/gm-tubes-supported" target="_blank">resource</a>.
 type Radiation struct {
 	Alpha     []Alpha     `json:"alpha,omitempty"`
 	Beta      []Beta      `json:"beta,omitempty"`
@@ -220,6 +250,7 @@ type Radiation struct {
 	Gamma     []Gamma     `json:"gamma,omitempty"`
 }
 
+// RadioShow
 type RadioShow struct {
 	End   string `json:"end"`
 	Name  string `json:"name"`
@@ -228,6 +259,7 @@ type RadioShow struct {
 	Url   string `json:"url"`
 }
 
+// Sensors Data of various sensors in your space (e.g. temperature, humidity, amount of Club-Mate left, …). The only canonical property is the <em>temp</em> property, additional sensor types may be defined by you. In this case, you are requested to share your definition for inclusion in this specification.
 type Sensors struct {
 	AccountBalance     []AccountBalance     `json:"account_balance,omitempty"`
 	Barometer          []Barometer          `json:"barometer,omitempty"`
@@ -243,6 +275,7 @@ type Sensors struct {
 	Wind               []Wind               `json:"wind,omitempty"`
 }
 
+// SpaceAPI014 SpaceAPI 0.14
 type SpaceAPI014 struct {
 	Api                 string            `json:"api"`
 	Cache               *Cache            `json:"cache,omitempty"`
@@ -264,17 +297,20 @@ type SpaceAPI014 struct {
 	Url                 string            `json:"url"`
 }
 
+// Spacefed A flag indicating if the hackerspace uses SpaceFED, a federated login scheme so that visiting hackers can use the space WiFi with their home space credentials.
 type Spacefed struct {
 	Spacenet   bool `json:"spacenet"`
 	Spacephone bool `json:"spacephone"`
 	Spacesaml  bool `json:"spacesaml"`
 }
 
+// Speed
 type Speed struct {
 	Unit  string  `json:"unit"`
 	Value float64 `json:"value"`
 }
 
+// State A collection of status-related data: actual open/closed status, icons, last change timestamp etc.
 type State struct {
 	Icon          *Icon   `json:"icon,omitempty"`
 	Lastchange    float64 `json:"lastchange,omitempty"`
@@ -283,12 +319,14 @@ type State struct {
 	TriggerPerson string  `json:"trigger_person,omitempty"`
 }
 
+// Stream A mapping of stream types to stream URLs.If you use other stream types make a <a href="add-your-space" target="_blank">change request</a> or prefix yours with <samp>ext_</samp> .
 type Stream struct {
 	M4      string `json:"m4,omitempty"`
 	Mjpeg   string `json:"mjpeg,omitempty"`
 	Ustream string `json:"ustream,omitempty"`
 }
 
+// Temperature
 type Temperature struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location"`
@@ -297,6 +335,7 @@ type Temperature struct {
 	Value       float64 `json:"value"`
 }
 
+// TotalMemberCount
 type TotalMemberCount struct {
 	Description string  `json:"description,omitempty"`
 	Location    string  `json:"location,omitempty"`
@@ -304,11 +343,13 @@ type TotalMemberCount struct {
 	Value       float64 `json:"value"`
 }
 
+// Wiki
 type Wiki struct {
 	Type string `json:"type,omitempty"`
 	Url  string `json:"url"`
 }
 
+// Wind
 type Wind struct {
 	Description string      `json:"description,omitempty"`
 	Location    string      `json:"location"`

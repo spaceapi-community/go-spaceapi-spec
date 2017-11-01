@@ -1,5 +1,6 @@
 package spaceapiStruct
 
+// Contact Contact information about your space
 type Contact struct {
 	Email     string   `json:"email,omitempty"`
 	Irc       string   `json:"irc,omitempty"`
@@ -11,6 +12,7 @@ type Contact struct {
 	Twitter   string   `json:"twitter,omitempty"`
 }
 
+// Events
 type Events struct {
 	Extra string  `json:"extra,omitempty"`
 	Name  string  `json:"name"`
@@ -18,21 +20,25 @@ type Events struct {
 	Type  string  `json:"type"`
 }
 
+// Feeds
 type Feeds struct {
 	Name string `json:"name"`
 	Type string `json:"type,omitempty"`
 	Url  string `json:"url"`
 }
 
+// Icon Icons that show the status graphically
 type Icon struct {
 	Closed string `json:"closed"`
 	Open   string `json:"open"`
 }
 
+// Sensors
 type Sensors struct {
 	Temp *Temp `json:"temp,omitempty"`
 }
 
+// SpaceAPI012 SpaceAPI 0.12
 type SpaceAPI012 struct {
 	Address    string    `json:"address,omitempty"`
 	Api        string    `json:"api"`
@@ -53,8 +59,10 @@ type SpaceAPI012 struct {
 	Url        string    `json:"url"`
 }
 
+// Stream A mapping of stream types to stream URLs. Example: <samp>{'mp4':'http//example.org/stream.mpg', 'mjpeg':'http://example.org/stream.mjpeg'}</samp>
 type Stream struct {
 }
 
+// Temp A mapping of measuring locations to temperature values. The values should match the basic regular expression <code>^[+-]?[0-9]+(\.[0-9]+)?[FCK]$</code>. Example: <samp>{'kitchen':'48F', 'storage':'-273.1K'}</samp>
 type Temp struct {
 }

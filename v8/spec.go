@@ -1,5 +1,6 @@
 package spaceapiStruct
 
+// Events
 type Events struct {
 	Extra string  `json:"extra,omitempty"`
 	Name  string  `json:"name"`
@@ -7,6 +8,7 @@ type Events struct {
 	Type  string  `json:"type"`
 }
 
+// SpaceAPI08 SpaceAPI 0.8
 type SpaceAPI08 struct {
 	Address    string   `json:"address,omitempty"`
 	Api        string   `json:"api"`
@@ -24,5 +26,6 @@ type SpaceAPI08 struct {
 	Url        string   `json:"url"`
 }
 
+// Stream A mapping of stream types to stream URLs. Example: <samp>{'mp4':'http//example.org/stream.mpg', 'mjpeg':'http://example.org/stream.mjpeg'}</samp>
 type Stream struct {
 }

@@ -1,5 +1,6 @@
 package spaceapiStruct
 
+// Contact Contact information about your space
 type Contact struct {
 	Email     string   `json:"email,omitempty"`
 	Irc       string   `json:"irc,omitempty"`
@@ -11,6 +12,7 @@ type Contact struct {
 	Twitter   string   `json:"twitter,omitempty"`
 }
 
+// Events
 type Events struct {
 	Extra string  `json:"extra,omitempty"`
 	Name  string  `json:"name"`
@@ -18,6 +20,7 @@ type Events struct {
 	Type  string  `json:"type"`
 }
 
+// SpaceAPI09 SpaceAPI 0.9
 type SpaceAPI09 struct {
 	Address    string   `json:"address,omitempty"`
 	Api        string   `json:"api"`
@@ -35,5 +38,6 @@ type SpaceAPI09 struct {
 	Url        string   `json:"url"`
 }
 
+// Stream A mapping of stream types to stream URLs. Example: <samp>{'mp4':'http//example.org/stream.mpg', 'mjpeg':'http://example.org/stream.mjpeg'}</samp>
 type Stream struct {
 }
