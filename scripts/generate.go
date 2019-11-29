@@ -18,13 +18,22 @@ func main() {
 		}
 
 		generator := generate.New(parsedSchema)
-		_ = generator.CreateTypes()
+		err = generator.CreateTypes()
+		if err != nil {
+			panic("couldnt create types")
+		}
 
 		w, err := os.Create("./v" + version + "/spec.go")
+		if err != nil {
+			panic("couldnt write spec file")
+		}
 		generate.Output(w, generator, "spaceapiStruct")
 	}
 
 	// structs should be formatted nicely and gofmt doesn't provide a lib. Not going to implement it here
 	cmd := exec.Command("gofmt", "-w", "./")
-	cmd.Run()
+	err := cmd.Run()
+	if err != nil {
+		panic("couldnt fmt file")
+	}
 }
