@@ -27,7 +27,7 @@ func main() {
 		if err != nil {
 			panic("couldnt write spec file")
 		}
-		generate.Output(w, generator, "spaceapiStruct")
+		generate.Output(w, generator, "spaceapistruct")
 	}
 
 	// structs should be formatted nicely and gofmt doesn't provide a lib. Not going to implement it here
