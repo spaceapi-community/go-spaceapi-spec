@@ -170,7 +170,7 @@ type Calendar struct {
 	Url string `json:"url"`
 }
 
-// Contact Contact information about your space.
+// Contact Contact information about your space. You must define at least one which is in the list of allowed values of the issue_report_channels field.
 type Contact struct {
 
 	// E-mail address for contacting your space. If this is a mailing list consider to use the contact/ml field.
@@ -545,7 +545,7 @@ type Radiation struct {
 	Gamma []*GammaItems `json:"gamma,omitempty"`
 }
 
-// Root SpaceAPI v14
+// Root SpaceAPI v15 (Draft)
 type Root struct {
 
 	// The versions your SpaceAPI endpoint supports
@@ -554,7 +554,7 @@ type Root struct {
 	// URL(s) of webcams in your space
 	Cam []string `json:"cam,omitempty"`
 
-	// Contact information about your space.
+	// Contact information about your space. You must define at least one which is in the list of allowed values of the issue_report_channels field.
 	Contact *Contact `json:"contact"`
 
 	// Events which happened recently in your space and which could be interesting to the public, like 'User X has entered/triggered/did something at timestamp Z'
