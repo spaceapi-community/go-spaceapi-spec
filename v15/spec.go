@@ -525,8 +525,14 @@ type PowerConsumptionItems struct {
 
 // Properties
 type Properties struct {
-	BitsPerSecond    *BitsPerSecond    `json:"bits_per_second,omitempty"`
-	PacketsPerSecond *PacketsPerSecond `json:"packets_per_second,omitempty"`
+
+	// The wind direction in degrees.
+	Direction *Direction `json:"direction"`
+
+	// Height above mean sea level.
+	Elevation *Elevation `json:"elevation"`
+	Gust      *Gust      `json:"gust"`
+	Speed     *Speed     `json:"speed"`
 }
 
 // Radiation Compound radiation sensor. Check this <a rel="nofollow" href="https://sites.google.com/site/diygeigercounter/gm-tubes-supported" target="_blank">resource</a>.
@@ -3367,6 +3373,129 @@ func (strct *PowerConsumptionItems) UnmarshalJSON(b []byte) error {
 	// check if value (a required property) was received
 	if !valueReceived {
 		return errors.New("\"value\" is required but was not present")
+	}
+	return nil
+}
+
+func (strct *Properties) MarshalJSON() ([]byte, error) {
+	buf := bytes.NewBuffer(make([]byte, 0))
+	buf.WriteString("{")
+	comma := false
+	// "Direction" field is required
+	if strct.Direction == nil {
+		return nil, errors.New("direction is a required field")
+	}
+	// Marshal the "direction" field
+	if comma {
+		buf.WriteString(",")
+	}
+	buf.WriteString("\"direction\": ")
+	if tmp, err := json.Marshal(strct.Direction); err != nil {
+		return nil, err
+	} else {
+		buf.Write(tmp)
+	}
+	comma = true
+	// "Elevation" field is required
+	if strct.Elevation == nil {
+		return nil, errors.New("elevation is a required field")
+	}
+	// Marshal the "elevation" field
+	if comma {
+		buf.WriteString(",")
+	}
+	buf.WriteString("\"elevation\": ")
+	if tmp, err := json.Marshal(strct.Elevation); err != nil {
+		return nil, err
+	} else {
+		buf.Write(tmp)
+	}
+	comma = true
+	// "Gust" field is required
+	if strct.Gust == nil {
+		return nil, errors.New("gust is a required field")
+	}
+	// Marshal the "gust" field
+	if comma {
+		buf.WriteString(",")
+	}
+	buf.WriteString("\"gust\": ")
+	if tmp, err := json.Marshal(strct.Gust); err != nil {
+		return nil, err
+	} else {
+		buf.Write(tmp)
+	}
+	comma = true
+	// "Speed" field is required
+	if strct.Speed == nil {
+		return nil, errors.New("speed is a required field")
+	}
+	// Marshal the "speed" field
+	if comma {
+		buf.WriteString(",")
+	}
+	buf.WriteString("\"speed\": ")
+	if tmp, err := json.Marshal(strct.Speed); err != nil {
+		return nil, err
+	} else {
+		buf.Write(tmp)
+	}
+	comma = true
+
+	buf.WriteString("}")
+	rv := buf.Bytes()
+	return rv, nil
+}
+
+func (strct *Properties) UnmarshalJSON(b []byte) error {
+	directionReceived := false
+	elevationReceived := false
+	gustReceived := false
+	speedReceived := false
+	var jsonMap map[string]json.RawMessage
+	if err := json.Unmarshal(b, &jsonMap); err != nil {
+		return err
+	}
+	// parse all the defined properties
+	for k, v := range jsonMap {
+		switch k {
+		case "direction":
+			if err := json.Unmarshal([]byte(v), &strct.Direction); err != nil {
+				return err
+			}
+			directionReceived = true
+		case "elevation":
+			if err := json.Unmarshal([]byte(v), &strct.Elevation); err != nil {
+				return err
+			}
+			elevationReceived = true
+		case "gust":
+			if err := json.Unmarshal([]byte(v), &strct.Gust); err != nil {
+				return err
+			}
+			gustReceived = true
+		case "speed":
+			if err := json.Unmarshal([]byte(v), &strct.Speed); err != nil {
+				return err
+			}
+			speedReceived = true
+		}
+	}
+	// check if direction (a required property) was received
+	if !directionReceived {
+		return errors.New("\"direction\" is required but was not present")
+	}
+	// check if elevation (a required property) was received
+	if !elevationReceived {
+		return errors.New("\"elevation\" is required but was not present")
+	}
+	// check if gust (a required property) was received
+	if !gustReceived {
+		return errors.New("\"gust\" is required but was not present")
+	}
+	// check if speed (a required property) was received
+	if !speedReceived {
+		return errors.New("\"speed\" is required but was not present")
 	}
 	return nil
 }
